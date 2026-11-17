@@ -1,27 +1,20 @@
-#Afficher les options à l'écran
+#Afficher le menu()
+#   Afficher l'option 1: Lancer le jeu
+#   Afficher l'option 2: Tableau des scores
+#   Afficher l'option 3: Quitter le jeu
 
-#Récupérer un choix valide parmi les options
----#Tant que infini
----    #Afficher les options numérotées
----    #Demander un choix au joueur
----    #Si choix est valide!!!
----        #Retrouner le choix valide
----    #Afficher un message d'erreur
+#Vérifier si le choix est valide()
+#   Si ce n'est pas un digit
+#       Retourne FAUX
+#   Convertir le choix du joueur en entier
+#   Si le choix du joueur est inférieur au minimum ou supérieur au maximum
+#       Retourne FAUX
+#   Retourne VRAI
 
-#Choix est valide
-    ---#Si le choix du joueur est composé uniquement de chiffres
-    ---    #Transformer le choix rentrer par le joueur en nombre entier
-    ---    #Si le choix du joueur n'est pas compris dans l'intervalle de choix dispo
-    ---        #Afficher un message d'erreur
-    ---    #Sinon (choix composé de chiffres et compris dans l'intervalle)
-    ---        #Vérifie choix du joueur!!!
-    ---#Sinon (choix pas uniquement composé de chiffres)
-    ---    #Afficher un message d'erreur
-
-#Vérifie choix du joueur
-    #Si le choix du joueur est égal à 1
-        #Lancer le jeu!!!
-    #Si le choix du joueur est égal à 2
-        #Afficher le tableau des scores!!!
-    #Si le choix du joueur est égal à 3
-        #Quitter le programme
+#Obtenir un choix valide()
+#   Tant que infini
+#       Afficher le menu()
+#       Demander au joueur son choix
+#       Si le choix est valide()
+#           Retourner le choix du joueur
+#       Afficher une erreur
