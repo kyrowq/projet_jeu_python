@@ -18,3 +18,22 @@
 #       Si le choix est valide()
 #           Retourner le choix du joueur
 #       Afficher une erreur
+
+#Executer le choix()
+#   Selon le choix
+#       choix 1: Lancer le jeu()
+#       choix 2: Afficher les scores()
+#       choix 3: Quitter le jeu()
+
+#Lancer le jeu()
+#   Composer l'équipe()
+#   Initialiser le numéro de la manche à 1
+#   Tant qu'il reste au moins un personnage de l'équipe en vie
+#       Créer les monstres de la manche()
+#       Combat()
+#       Si tous les personnages sont morts
+#           Sortir de la boucle
+#       Afficher que la manche a été gagné
+#       Ajouter 1 au numéro de la manche
+#   Afficher la fin de partie avec le nombre de manche atteinte
+#   Enregistrer le score()
