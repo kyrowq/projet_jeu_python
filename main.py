@@ -62,23 +62,33 @@ def executer_le_choix(choix):
 #       choix 3: Quitter le jeu()
         quitter_le_jeu()
 
-#Lancer le jeu()
+def lancer_le_jeu():
 #   Demander au joueur son pseudo()
+    pseudo = demander_au_joueur_son_pseudo()
 #   Composer l'équipe()
+    equipe = composer_equipe()
 #   Initialiser le numéro de la manche à 1
+    numero_manche = 1
 #   Tant que Combattre la manche()
+    while combattre_la_manche(equipe):
 #       Ajouter 1 au numéro de la manche
+        numero_manche += 1
 #   Afficher la fin de partie avec le nombre de manche atteinte
+    print(f"Fin de partie ! Ton équipe a atteint la manche {numero_manche}.")
 #   Enregistrer les scores()
+    enregistrer_le_score(pseudo, numero_manche)
 
-#Afficher les scores()
-
-#Demander au joueur son pseudo()
+def demander_au_joueur_son_pseudo():
 #   Tant que infini
+    while True:
 #       Demander le pseudo du joueur
+        pseudo = input("Entrer votre pseduo : ").strip()
 #       Si le pseudo n'est pas vide
+        if pseudo != "":
 #           Retourner le pseudo
+            return pseudo
 #       Afficher une erreur
+        print("Le pseudo ne peut pas être vide.")
 
 #Composer l'équipe()
 #   Mettre dans persos disponibles le résultat de Lire les persos()
@@ -163,3 +173,5 @@ def executer_le_choix(choix):
 #   Mettre dans pseudo du joueur le résultat de Demander au joueur son pseudo()
 #   Créer un score avec le pseudo du joueur et la manche atteinte
 #   Ajouter le score à la collection scores de la base de données
+
+#Afficher les scores()
