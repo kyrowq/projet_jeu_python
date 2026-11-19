@@ -152,26 +152,39 @@ def tirer_3_monstres_au_hasard(monstres):
 #   Choisir 3 monstres differents au hasard dans la liste et les retourner
     return random.sample(monstres, 3)
 
-#Jouer le tour d'un camp()
+def jouer_le_tour_d_un_camp(attaquants, defenseurs):
 #   Pour chaque attaquant vivant
+    for attaquant in lister_les_vivants(attaquants):
 #       Si Il ne reste plus de vivants() défenseurs
+        if not il_reste_des_vivants(defenseurs):
 #           Sortir de la boucle
+            break
 #       Mettre dans cible le résultat de Choisir une cible()
+        cible = choisir_une_cible(defenseurs)
 #       Mettre dans dégats le résultat de Attaquer()
+        degats = attaquer(attaquant, cible)
 #       Afficher le résultat de l'attaque()
+        afficher_le_resultat_de_l_attaque(attaquant, cible, degats)
 
-#Lister les vivants()
+def lister_les_vivants(camp):
 #   Créer une liste vide
+    vivants = []
 #   Pour chaque membre du camp
+    for membre in camp:
 #       Si le membre est vivant
+        if membre["vivant"]:
 #           Ajouter le membre à la liste
+            vivants.append(membre)
 #   Retourner la liste
+    return vivants
 
-#Il reste des vivants()
+def il_reste_des_vivants(camp):
 #   Retourner VRAI si la liste des vivants() n'est pas vide, sinon FAUX
+    return len(lister_les_vivants(camp)) > 0
 
-#Choisir une cible()
+def choisir_une_cible(camp_adverse):
 #   Retourner un  membre au hasard dans la liste des vivants() du camp adverse
+    return random.choice(lister_les_vivants(camp_adverse))
 
 #Attaquer()
 #   Mettre dans dégats le résultat de Calculer les dégats() de l'attaquant à la cible
