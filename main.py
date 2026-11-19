@@ -84,11 +84,25 @@
 #       Afficher le résultat de l'attaque()
 
 #Lister les vivants()
+#   Créer une liste vide
+#   Pour chaque membre du camp
+#       Si le membre est vivant
+#           Ajouter le membre à la liste
+#   Retourner la liste
 
 #Il reste des vivants()
+#   Retourner VRAI si la liste des vivants() n'est pas vide, sinon FAUX
 
 #Choisir une cible()
+#   Retourner un  membre au hasard dans la liste des vivants() du camp adverse
 
 #Attaquer()
+#   Mettre dans dégats le résultat de Calculer les dégats() de l'attaquant à la cible
+#   Appliquer les dégats() à la cible
+#   Retourner les dégats
+
+#Calculer les dégats()
+
+#Appliquer les dégats()
 
 #Afficher le résultat de l'attaque()
