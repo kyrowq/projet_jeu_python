@@ -52,3 +52,21 @@
 #Lire les persos()
 #   Lire la collection characters dans la base de données
 #   Retourner la liste des persos
+
+#Combattre la manche()
+#   Mettre dans monstres le résultat de Créer les monstres de la manche()
+#   Tant que Il reste des vivants() du coté de l'équipe et Il reste des vivants() du coté des monstres
+#       Jouer le tour d'un camp() l'équipe attaque les monstres
+#       Si Il reste des vivants () du coté des monstres
+#           Jouer le tour d'un camp() les monstres attaquent l'équipe
+#   Si il reste des vivants() du coté de l'équipe
+#       Afficher que la manche est réussie
+#   Retourner si Il reste des vivants() ou non dans l'équipe
+
+#Créer les monstres de la manche()
+
+#Lire les monstres()
+
+#Jouer le tour d'un camp()
+
+#Il reste des vivants()
