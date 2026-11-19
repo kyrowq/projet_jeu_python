@@ -1,3 +1,5 @@
+import random
+
 from db_init import db, init_jeu
 
 TAILLE_EQUIPE = 3
@@ -40,7 +42,7 @@ def obtenir_un_choix_valide(options):
 #       Si le choix est valide()
         if verifier_si_le_choix_est_valide(choix, 1, len(options)):
 #           Retourner le choix du joueur
-            return choix
+            return int(choix)
 #       Afficher une erreur
         print("\nChoix invalide, entre un des numéros proposés.")
 
@@ -80,7 +82,7 @@ def lancer_le_jeu():
 #   Afficher la fin de partie avec le nombre de manche atteinte
     print(f"Fin de partie ! Ton équipe a atteint la manche {numero_manche}.")
 #   Enregistrer les scores()
-    enregistrer_le_score(pseudo, numero_manche)
+    enregistrer_les_scores(pseudo, numero_manche)
 
 def demander_au_joueur_son_pseudo():
 #   Tant que infini
@@ -116,27 +118,39 @@ def lire_les_persos():
 #   Lire la collection characters dans la base de données et retourner la liste des persos
     return list(db.characters.find({}, {"_id": 0}))
 
-#Combattre la manche()
+def combattre_la_manche(equipe):
 #   Mettre dans monstres le résultat de Créer les monstres de la manche()
+    monstres = creer_les_monstres_de_la_manche()
 #   Tant que Il reste des vivants() du coté de l'équipe et Il reste des vivants() du coté des monstres
+    while il_reste_des_vivants(equipe) and il_reste_des_vivants(monstres):
 #       Jouer le tour d'un camp() l'équipe attaque les monstres
+        jouer_le_tour_d_un_camp(equipe, monstres)
 #       Si Il reste des vivants () du coté des monstres
+        if il_reste_des_vivants(monstres):
 #           Jouer le tour d'un camp() les monstres attaquent l'équipe
+            jouer_le_tour_d_un_camp(monstres, equipe)
 #   Si il reste des vivants() du coté de l'équipe
+    if il_reste_des_vivants(monstres):
 #       Afficher que la manche est réussie
+        print("\nLa manche est réussie !")
 #   Retourner si Il reste des vivants() ou non dans l'équipe
+    return il_reste_des_vivants(equipe)
 
-#Créer les monstres de la manche()
+def creer_les_monstres_de_la_manche():
 #   Mettre dans monstres disponibles le résultat de Lire les monstres()
+    monstres_disponibles = lire_les_monstres()
 #   Tirer 3 monstres au hasard() parmi ceux qui sont disponibles
+    monstres_tires = tirer_3_monstres_au_hasard(monstres_disponibles)
+#   On ajoute l'état "vivant" à chaque monstre
+    return [dict(monstre, vivant = True) for monstre in monstres_tires]
 
-#Lire les monstres()
-#   Lire la collection monstres dans la base de données
-#   Retourner la liste des monstres
+def lire_les_monstres():
+#   Lire la collection monstres dans la base de données et retourner la liste des monstres
+    return list(db.monsters.find({}, {"_id": 0}))
 
-#Tirer 3 monstres au hasard()
-#   Choisir 3 monstres differents au hasard dans la liste
-#   Retourner ces 3 monstres
+def tirer_3_monstres_au_hasard(monstres):
+#   Choisir 3 monstres differents au hasard dans la liste et les retourner
+    return random.sample(monstres, 3)
 
 #Jouer le tour d'un camp()
 #   Pour chaque attaquant vivant
