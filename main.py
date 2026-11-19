@@ -1,3 +1,7 @@
+from db_init import db, init_jeu
+
+TAILLE_EQUIPE = 3
+
 def decrire_une_option(option):
 #   Si l'option est un personnage
     if isinstance(option, dict):
@@ -8,7 +12,7 @@ def decrire_une_option(option):
 
 def afficher_les_options(options):
 #   Pour chaque option de la liste
-    for numero, option in enumerate(option, start=1):
+    for numero, option in enumerate(options, start=1):
 #       Afficher son numéro et sa description
         print(f"{numero}. {decrire_une_option(option)}")
 
@@ -38,7 +42,7 @@ def obtenir_un_choix_valide(options):
 #           Retourner le choix du joueur
             return choix
 #       Afficher une erreur
-        print("Choix invalide, entre un des numéros proposés.")
+        print("\nChoix invalide, entre un des numéros proposés.")
 
 def lancer_le_programme():
 #   Créer la liste des options du menu
@@ -90,19 +94,27 @@ def demander_au_joueur_son_pseudo():
 #       Afficher une erreur
         print("Le pseudo ne peut pas être vide.")
 
-#Composer l'équipe()
+def composer_equipe():
 #   Mettre dans persos disponibles le résultat de Lire les persos()
+    persos_disponibles = lire_les_persos()
 #   Créer une équipe vide
+    equipe = []
 #   Tant que l'équipe n'est pas complète
+    while len(equipe) < TAILLE_EQUIPE:
 #       Mettre dans choix le résultat de Obtenir un choix valide()
+        choix = obtenir_un_choix_valide(persos_disponibles)
 #       Mettre dans perso choisi le numéro du personnage disponible choisi par le joueur
+        perso_choisi = persos_disponibles[choix - 1]
 #       Ajouter une copie du perso choisi à l'équipe
+        equipe.append(dict(perso_choisi, vivant = True))
 #       Retirer le perso choisi des personnages disponnibles
+        persos_disponibles.remove(perso_choisi)
 #   Retourner l'équipe
+    return equipe
 
-#Lire les persos()
-#   Lire la collection characters dans la base de données
-#   Retourner la liste des persos
+def lire_les_persos():
+#   Lire la collection characters dans la base de données et retourner la liste des persos
+    return list(db.characters.find({}, {"_id": 0}))
 
 #Combattre la manche()
 #   Mettre dans monstres le résultat de Créer les monstres de la manche()
@@ -175,3 +187,5 @@ def demander_au_joueur_son_pseudo():
 #   Ajouter le score à la collection scores de la base de données
 
 #Afficher les scores()
+
+lancer_le_programme()
