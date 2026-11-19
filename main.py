@@ -1,34 +1,66 @@
-#Afficher les options()
+def decrire_une_option(option):
+#   Si l'option est un personnage
+    if isinstance(option, dict):
+#       Retoruner le nom du personnage, son attaque, sa défense et ses points de vie
+        return (f"{option['name']} - Attaque : {option['attack']} - Défense : {option['defense']} - PV : {option['hp']}")
+#   Retourner l'option
+    return option
+
+def afficher_les_options(options):
 #   Pour chaque option de la liste
+    for numero, option in enumerate(option, start=1):
 #       Afficher son numéro et sa description
+        print(f"{numero}. {decrire_une_option(option)}")
 
-#Vérifier si le choix est valide()
+def verifier_si_le_choix_est_valide(choix, minimum, maximum):
 #   Si ce n'est pas un digit
+    if not choix.isdigit():
 #       Retourne FAUX
+        return False
 #   Convertir le choix du joueur en entier
+    choix = int(choix)
 #   Si le choix du joueur est inférieur au minimum ou supérieur au maximum
+    if choix < minimum or choix > maximum:
 #       Retourne FAUX
+        return False
 #   Retourne VRAI
+    return True
 
-#Obtenir un choix valide()
+def obtenir_un_choix_valide(options):
 #   Tant que infini
+    while True:
 #       Afficher les options()
+        afficher_les_options(options)
 #       Demander au joueur son choix
+        choix = input("Ton choix : ")
 #       Si le choix est valide()
+        if verifier_si_le_choix_est_valide(choix, 1, len(options)):
 #           Retourner le choix du joueur
+            return choix
 #       Afficher une erreur
+        print("Choix invalide, entre un des numéros proposés.")
 
-#Lancer le programme()
+def lancer_le_programme():
 #   Créer la liste des options du menu
+    options_du_menu = ["Lancer le jeu", "Tableau des scores", "Quitter le jeu"]
 #   Tant que infini
+    while True:
 #       Mettre dans la variable choix le résultat de Obtenir un choix valide()
+        choix = obtenir_un_choix_valide(options_du_menu)
 #       Executer le choix()
+        executer_le_choix(choix)
 
-#Executer le choix()
+def executer_le_choix(choix):
 #   Selon le choix
+    if choix == 1:
 #       choix 1: Lancer le jeu()
+        lancer_le_jeu()
+    if choix == 2:
 #       choix 2: Afficher les scores()
+        afficher_les_scores()
+    if choix == 3:
 #       choix 3: Quitter le jeu()
+        quitter_le_jeu()
 
 #Lancer le jeu()
 #   Demander au joueur son pseudo()
@@ -39,7 +71,7 @@
 #   Afficher la fin de partie avec le nombre de manche atteinte
 #   Enregistrer les scores()
 
-#Affiher les scores()
+#Afficher les scores()
 
 #Demander au joueur son pseudo()
 #   Tant que infini
