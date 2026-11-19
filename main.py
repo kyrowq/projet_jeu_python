@@ -52,3 +52,43 @@
 #Lire les persos()
 #   Lire la collection characters dans la base de données
 #   Retourner la liste des persos
+
+#Combattre la manche()
+#   Mettre dans monstres le résultat de Créer les monstres de la manche()
+#   Tant que Il reste des vivants() du coté de l'équipe et Il reste des vivants() du coté des monstres
+#       Jouer le tour d'un camp() l'équipe attaque les monstres
+#       Si Il reste des vivants () du coté des monstres
+#           Jouer le tour d'un camp() les monstres attaquent l'équipe
+#   Si il reste des vivants() du coté de l'équipe
+#       Afficher que la manche est réussie
+#   Retourner si Il reste des vivants() ou non dans l'équipe
+
+#Créer les monstres de la manche()
+#   Mettre dans monstres disponibles le résultat de Lire les monstres()
+#   Tirer 3 monstres au hasard() parmi ceux qui sont disponibles
+
+#Lire les monstres()
+#   Lire la collection monstres dans la base de données
+#   Retourner la liste des monstres
+
+#Tirer 3 monstres au hasard()
+#   Choisir 3 monstres differents au hasard dans la liste
+#   Retourner ces 3 monstres
+
+#Jouer le tour d'un camp()
+#   Pour chaque attaquant vivant
+#       Si Il ne reste plus de vivants() défenseurs
+#           Sortir de la boucle
+#       Mettre dans cible le résultat de Choisir une cible()
+#       Mettre dans dégats le résultat de Attaquer()
+#       Afficher le résultat de l'attaque()
+
+#Lister les vivants()
+
+#Il reste des vivants()
+
+#Choisir une cible()
+
+#Attaquer()
+
+#Afficher le résultat de l'attaque()
