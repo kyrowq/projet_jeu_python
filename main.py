@@ -24,7 +24,6 @@
 #       Mettre dans la variable choix le résultat de Obtenir un choix valide()
 #       Executer le choix()
 
-
 #Executer le choix()
 #   Selon le choix
 #       choix 1: Lancer le jeu()
@@ -32,12 +31,22 @@
 #       choix 3: Quitter le jeu()
 
 #Lancer le jeu()
+#   Demander au joueur son pseudo()
 #   Composer l'équipe()
 #   Initialiser le numéro de la manche à 1
 #   Tant que Combattre la manche()
 #       Ajouter 1 au numéro de la manche
 #   Afficher la fin de partie avec le nombre de manche atteinte
-#   Enregistrer le score()
+#   Enregistrer les scores()
+
+#Affiher les scores()
+
+#Demander au joueur son pseudo()
+#   Tant que infini
+#       Demander le pseudo du joueur
+#       Si le pseudo n'est pas vide
+#           Retourner le pseudo
+#       Afficher une erreur
 
 #Composer l'équipe()
 #   Mettre dans persos disponibles le résultat de Lire les persos()
@@ -102,7 +111,23 @@
 #   Retourner les dégats
 
 #Calculer les dégats()
+#	Mettre dans dégats l'attaque de l'attaquant moins la défense de la cible
+#	Si les dégats sont inférieurs à 1
+#		Mettre les dégats à 1
+#	Retourner les dégats
 
 #Appliquer les dégats()
+#   Retirer les dégats aux points de vie de la cible
+#   Si les points de vie de la cible sont égaux à 0 ou moins
+#       Mettre les points de vie à 0
+#       Marquer la cible comme morte
 
 #Afficher le résultat de l'attaque()
+#   Afficher que l'attaquant attaque la cible et lui inflige les dégats
+#   Si la cible est morte
+#       Afficher que la cible est morte
+
+#Enregistrer les scores()
+#   Mettre dans pseudo du joueur le résultat de Demander au joueur son pseudo()
+#   Créer un score avec le pseudo du joueur et la manche atteinte
+#   Ajouter le score à la collection scores de la base de données
