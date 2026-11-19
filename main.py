@@ -186,27 +186,42 @@ def choisir_une_cible(camp_adverse):
 #   Retourner un  membre au hasard dans la liste des vivants() du camp adverse
     return random.choice(lister_les_vivants(camp_adverse))
 
-#Attaquer()
+def attaquer(attaquant, cible):
 #   Mettre dans dégats le résultat de Calculer les dégats() de l'attaquant à la cible
+    degats = calculer_les_degats(attaquant, cible)
 #   Appliquer les dégats() à la cible
+    appliquer_les_degats(cible, degats)
 #   Retourner les dégats
+    return degats
 
-#Calculer les dégats()
+def calculer_les_degats(attaquant, cible):
 #	Mettre dans dégats l'attaque de l'attaquant moins la défense de la cible
+    degats = attaquant["attack"] - cible["defense"]
 #	Si les dégats sont inférieurs à 1
+    if degats < 1:
 #		Mettre les dégats à 1
+        degats = 1
 #	Retourner les dégats
+    return degats
 
-#Appliquer les dégats()
+def appliquer_les_degats(cible, degats):
 #   Retirer les dégats aux points de vie de la cible
+    cible["hp"] -= degats
 #   Si les points de vie de la cible sont égaux à 0 ou moins
+    if cible["hp"] <= 0:
 #       Mettre les points de vie à 0
+        cible["hp"] = 0
 #       Marquer la cible comme morte
+        cible["vivant"] = False
 
-#Afficher le résultat de l'attaque()
+def afficher_le_resultat_de_l_attaque(attaquant, cible, degats):
 #   Afficher que l'attaquant attaque la cible et lui inflige les dégats
+    print(f"{attaquant['name']} attaque {cible['name']} et lui inflige"
+          f"{degats} dégats (PV restants : {cible['hp']})")
 #   Si la cible est morte
+    if not cible["vivant"]:
 #       Afficher que la cible est morte
+        print(f"  -> {cible['name']} est mort !")
 
 #Enregistrer les scores()
 #   Mettre dans pseudo du joueur le résultat de Demander au joueur son pseudo()
