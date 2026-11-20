@@ -229,5 +229,18 @@ def afficher_le_resultat_de_l_attaque(attaquant, cible, degats):
 #   Ajouter le score à la collection scores de la base de données
 
 #Afficher les scores()
+#   Mettre dans meilleurs scores le résultat de Lire les meilleurs scores()
+#   Si la liste des meilleurs scores est vide
+#       Afficher qu'il n'y a pas encore de score
+#   Sinon
+#       Afficher la liste des scores
+
+#Lire les meilleurs scores()
+#   Mettre dans scores le trie de la manche la plus élevée à la moins élevée
+#   Retourner la liste des scores
+
+#Afficher la liste des scores()
+#   Pour chaque score de la liste
+#       Afficher son rang, le nom du joueur et la manche atteinte
 
 lancer_le_programme()
