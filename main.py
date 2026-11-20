@@ -1,5 +1,6 @@
 import random
 import sys
+import os
 
 from db_init import db, init_jeu
 
@@ -53,6 +54,7 @@ def lancer_le_programme():
     options_du_menu = ["Lancer le jeu", "Tableau des scores", "Quitter le jeu"]
 #   Tant que infini
     while True:
+        effacer_le_terminal()
 #       Mettre dans la variable choix le résultat de Obtenir un choix valide()
         choix = obtenir_un_choix_valide(options_du_menu)
 #       Executer le choix()
@@ -71,6 +73,7 @@ def executer_le_choix(choix):
         quitter_le_jeu()
 
 def lancer_le_jeu():
+    effacer_le_terminal()
 #   Demander au joueur son pseudo()
     pseudo = demander_au_joueur_son_pseudo()
 #   Composer l'équipe()
@@ -85,6 +88,7 @@ def lancer_le_jeu():
     print(f"Fin de partie ! Ton équipe a atteint la manche {numero_manche}.")
 #   Enregistrer les scores()
     enregistrer_le_score(pseudo, numero_manche)
+    attendre_le_joueur()
 
 def demander_au_joueur_son_pseudo():
 #   Tant que infini
@@ -105,6 +109,7 @@ def composer_equipe():
     equipe = []
 #   Tant que l'équipe n'est pas complète
     while len(equipe) < TAILLE_EQUIPE:
+        effacer_le_terminal()
 #       Mettre dans choix le résultat de Obtenir un choix valide()
         choix = obtenir_un_choix_valide(persos_disponibles)
 #       Mettre dans perso choisi le numéro du personnage disponible choisi par le joueur
@@ -132,7 +137,7 @@ def combattre_la_manche(equipe):
 #           Jouer le tour d'un camp() les monstres attaquent l'équipe
             jouer_le_tour_d_un_camp(monstres, equipe)
 #   Si il reste des vivants() du coté de l'équipe
-    if il_reste_des_vivants(monstres):
+    if il_reste_des_vivants(equipe):
 #       Afficher que la manche est réussie
         print("\nLa manche est réussie !")
 #   Retourner si Il reste des vivants() ou non dans l'équipe
@@ -218,7 +223,7 @@ def appliquer_les_degats(cible, degats):
 
 def afficher_le_resultat_de_l_attaque(attaquant, cible, degats):
 #   Afficher que l'attaquant attaque la cible et lui inflige les dégats
-    print(f"{attaquant['name']} attaque {cible['name']} et lui inflige"
+    print(f"{attaquant['name']} attaque {cible['name']} et lui inflige "
           f"{degats} dégats (PV restants : {cible['hp']})")
 #   Si la cible est morte
     if not cible["vivant"]:
@@ -232,6 +237,7 @@ def enregistrer_le_score(pseudo, manche_atteinte):
     db.scores.insert_one(score)
 
 def afficher_les_scores():
+    effacer_le_terminal()
 #   Mettre dans meilleurs scores le résultat de Lire les meilleurs scores()
     meilleurs_scores = lire_les_meilleurs_scores()
 #   Si la liste des meilleurs scores est vide
@@ -242,6 +248,7 @@ def afficher_les_scores():
     else:
 #       Afficher la liste des scores
         afficher_la_liste_des_scores(meilleurs_scores)
+    attendre_le_joueur()
 
 def lire_les_meilleurs_scores():
 #   Mettre dans scores le trie de la manche la plus élevée à la moins élevée
@@ -259,6 +266,12 @@ def afficher_la_liste_des_scores(scores):
 def quitter_le_jeu():
     print("\n Merci d'avoir joué, à bientot !")
     sys.exit()
+
+def effacer_le_terminal():
+    os.system("cls" if os.name == "nt" else "clear")
+
+def attendre_le_joueur():
+    input("\nAppuie sur Entrée pour continuer...")
 
 init_jeu()
 lancer_le_programme()
