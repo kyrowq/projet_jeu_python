@@ -1,8 +1,10 @@
 import random
+import sys
 
 from db_init import db, init_jeu
 
 TAILLE_EQUIPE = 3
+NOMBRE_MEILLEURS_SCORES = 5
 
 def decrire_une_option(option):
 #   Si l'option est un personnage
@@ -82,7 +84,7 @@ def lancer_le_jeu():
 #   Afficher la fin de partie avec le nombre de manche atteinte
     print(f"Fin de partie ! Ton équipe a atteint la manche {numero_manche}.")
 #   Enregistrer les scores()
-    enregistrer_les_scores(pseudo, numero_manche)
+    enregistrer_le_score(pseudo, numero_manche)
 
 def demander_au_joueur_son_pseudo():
 #   Tant que infini
@@ -223,24 +225,40 @@ def afficher_le_resultat_de_l_attaque(attaquant, cible, degats):
 #       Afficher que la cible est morte
         print(f"  -> {cible['name']} est mort !")
 
-#Enregistrer les scores()
-#   Mettre dans pseudo du joueur le résultat de Demander au joueur son pseudo()
+def enregistrer_le_score(pseudo, manche_atteinte):
 #   Créer un score avec le pseudo du joueur et la manche atteinte
+    score = {"pseudo": pseudo, "manche": manche_atteinte}
 #   Ajouter le score à la collection scores de la base de données
+    db.scores.insert_one(score)
 
-#Afficher les scores()
+def afficher_les_scores():
 #   Mettre dans meilleurs scores le résultat de Lire les meilleurs scores()
+    meilleurs_scores = lire_les_meilleurs_scores()
 #   Si la liste des meilleurs scores est vide
+    if len(meilleurs_scores) == 0:
 #       Afficher qu'il n'y a pas encore de score
+        print("\n Il n'y a pas encore de score.")
 #   Sinon
+    else:
 #       Afficher la liste des scores
+        afficher_la_liste_des_scores(meilleurs_scores)
 
-#Lire les meilleurs scores()
+def lire_les_meilleurs_scores():
 #   Mettre dans scores le trie de la manche la plus élevée à la moins élevée
+    scores = db.scores.find({}, {"_id": 0}).sort("manche", -1)
 #   Retourner la liste des scores
+    return list(scores.limit(NOMBRE_MEILLEURS_SCORES))
 
-#Afficher la liste des scores()
+def afficher_la_liste_des_scores(scores):
+    print("\n===== TABLEAU DES SCORES =====")
 #   Pour chaque score de la liste
+    for rang, score in enumerate(scores, start=1):
 #       Afficher son rang, le nom du joueur et la manche atteinte
+        print(f"{rang}. {score['pseudo']} - manche {score['manche']}")
 
+def quitter_le_jeu():
+    print("\n Merci d'avoir joué, à bientot !")
+    sys.exit()
+
+init_jeu()
 lancer_le_programme()
