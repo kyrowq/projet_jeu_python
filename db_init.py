@@ -5,30 +5,30 @@ db = client["jeu_video_python"]
 
 #On établie les perso et leurs stats
 characters = [
-    ("Guerrier", 15, 10, 100),
-    ("Mage", 20, 5, 80),
-    ("Archer", 18, 7, 90),
-    ("Voleur", 22, 8, 85),
-    ("Paladin", 14, 12, 110),
-    ("Sorcier", 25, 3, 70),
-    ("Chevalier", 17, 15, 120),
-    ("Moine", 19, 9, 95),
-    ("Berserker", 23, 6, 105),
-    ("Chasseur", 16, 11, 100)
+    ("Guerrier", 16, 6, 280),
+    ("Mage", 22, 2, 190),
+    ("Archer", 19, 3, 220),
+    ("Voleur", 20, 4, 210),
+    ("Paladin", 14, 9, 320),
+    ("Sorcier", 24, 1, 180),
+    ("Chevalier", 15, 10, 330),
+    ("Moine", 17, 5, 250),
+    ("Berserker", 21, 3, 240),
+    ("Chasseur", 18, 5, 230)
 ]
 
-#On établie les monstres et leurs stats 
+#On établie les monstres et leurs stats
 monsters = [
-    ("Gobelin", 5, 5, 50),
-    ("Orc", 10, 8, 120),
-    ("Dragon", 18, 20, 300),
-    ("Zombie", 6, 6, 70),
-    ("Troll", 13, 15, 200),
-    ("Spectre", 9, 10, 100),
-    ("Golem", 15, 25, 250),
-    ("Vampire", 11, 12, 150),
-    ("Loup-garou", 14, 18, 180),
-    ("Squelette", 8, 7, 90)
+    ("Gobelin", 5, 2, 40),
+    ("Orc", 9, 4, 90),
+    ("Dragon", 16, 8, 220),
+    ("Zombie", 7, 2, 70),
+    ("Troll", 12, 6, 150),
+    ("Spectre", 10, 5, 80),
+    ("Golem", 13, 10, 180),
+    ("Vampire", 11, 5, 100),
+    ("Loup-garou", 12, 4, 110),
+    ("Squelette", 8, 3, 60)
 ]
 
 def init_jeu():
